@@ -4,31 +4,112 @@
 @theme {
   --font-display: "Urbanist", sans-serif;
   --breakpoint-3xl: 1920px;
-  --color-primary: #FF9324;
+  --color-primary: #8B5CF6; /* Violet-500 */
 }
 
 @layer base {
   html {
     font-family: var(--font-display);
   }
+
   body {
-    background-color: #fcfbfc;
+    background-color: #f9f7fc;
     overflow-x: hidden;
   }
 }
+
+
+
+
+@keyframes rotate360 {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.rotate-360:hover {
+  animation: rotate360 1s linear infinite;
+  display: inline-block;
+}
+
+
+/* ========= Background Motion Animations ========= */
+@keyframes gradientMotion {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradientMotion {
+  animation: gradientMotion 18s ease-in-out infinite;
+}
+
+/* Floating Blobs */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, -90px) scale(1.1); }
+  50% { transform: translate(-40px, 60px) scale(0.95); }
+  75% { transform: translate(20px, -40px) scale(1.05); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-50px, 80px) scale(1.08); }
+  50% { transform: translate(60px, -60px) scale(0.93); }
+  75% { transform: translate(-30px, 40px) scale(1.03); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, -90px) scale(1.1); }
+  50% { transform: translate(-60px, 70px) scale(0.9); }
+  75% { transform: translate(40px, -20px) scale(1.05); }
+}
+.animate-float1 { animation: float1 14s ease-in-out infinite; }
+.animate-float2 { animation: float2 20s ease-in-out infinite; }
+.animate-float3 { animation: float3 24s ease-in-out infinite; }
+
+/* ========= Cards Motion ========= */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0px) scale(1); }
+}
+.animate-slideUp {
+  animation: slideUp 0.9s ease-out forwards;
+}
+
+/* ========= Button Pulse Glow ========= */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 25px 5px rgba(139, 92, 246, 0.6); }
+}
+.animate-pulseGlow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+
+
+
+
+
+
+
+
 
 /* Custom scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.4);
+  background-color: rgba(120, 80, 200, 0.4);
   border-radius: 10px;
 }
 
+/* ============================= */
+/* ✨ Custom Utilities & Effects */
+/* ============================= */
 @layer utilities {
-  /* Animate text with a shine effect */
+  /* Animate text with a purple shine effect */
   @keyframes text-shine {
     0% {
       background-position: 0% 50%;
@@ -39,66 +120,49 @@
   }
 
   .animate-text-shine {
+    background-image: linear-gradient(90deg, #8B5CF6, #C084FC, #A78BFA);
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
     animation: text-shine 3s ease-in-out infinite alternate;
   }
 
+  /* Floating blob animations (soft purple gradients) */
   @keyframes blob1 {
-    0%, 100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(30px, -60px) scale(1.1);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -60px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
   }
-
   @keyframes blob2 {
-    0%, 100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(-40px, 60px) scale(1.05);
-    }
-    66% {
-      transform: translate(20px, -40px) scale(0.95);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-40px, 60px) scale(1.05); }
+    66% { transform: translate(20px, -40px) scale(0.95); }
+  }
+  @keyframes blob3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, 140px) scale(1.15); }
+    66% { transform: translate(-30px, -30px) scale(0.85); }
+  }
+
+  .animate-blob1 { animation: blob1 8s ease-in-out infinite; }
+  .animate-blob2 { animation: blob2 10s ease-in-out infinite; }
+  .animate-blob3 { animation: blob3 12s ease-in-out infinite; }
+
+  /* ============================= */
+  /* 💜 Components - Inputs & Btns */
+  /* ============================= */
+
+  .input-box {
+    @apply w-full flex justify-between gap-3 text-sm text-gray-800 bg-white rounded px-4 py-3 mb-4 mt-3 border border-purple-100 outline-none focus-within:border-purple-400 shadow-sm;
+  }
+
+  .btn-primary {
+    @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-gradient-to-r from-[#8B5CF6] to-[#C084FC] shadow-lg shadow-purple-300/30 p-[10px] rounded-md my-1 transition-all duration-200 hover:scale-[1.02] hover:shadow-purple-400/50 hover:from-[#7C3AED] hover:to-[#A78BFA];
+  }
+
+  .btn-small {
+    @apply flex items-center justify-center gap-3 bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:scale-105 hover:shadow-md hover:shadow-purple-400 transition-all cursor-pointer;
   }
 }
 
-@keyframes blob3 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(20px, 140px) scale(1.15);
-  }
-  66% {
-    transform: translate(-30px, -30px) scale(0.85);
-  }
-}
-
-.animate-blob1 {
-  animation: blob1 8s ease-in-out infinite;
-}
-
-.animate-blob2 {
-  animation: blob2 10s ease-in-out infinite;
-}
-
-.animate-blob3 {
-  animation: blob3 12s ease-in-out infinite;
-}
-
-.input-box {
-  @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-orange-300;
-}
-
-.btn-primary {
-  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-[10px] rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
-}
-
-.btn-small {
-  @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-orange-300;
-}
