@@ -1,4 +1,4 @@
-## 📌 Overview
+##  Overview
 
 TrackNPrep is an AI-powered platform designed to help students and professionals practice technical interviews using real-time AI-generated questions, mock interview simulations, and personalized feedback analysis.
 
