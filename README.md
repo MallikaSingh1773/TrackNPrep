@@ -1,18 +1,3 @@
-Samajh gaya 👍
-**Content strong hai**, bas thoda **cleanup + correction + ownership fix** karna hai.
-Main **jyada add-on nahi kar rahi**, sirf:
-
-* repo link fix
-* wording thodi crisp
-* consistency improve
-* tumhara **new repo reflect**
-
-Neeche **UPDATED version** directly use kar sakti ho 👇
-
----
-
-## 📌 Overview
-
 **TrackNPrep** is an AI-powered interview preparation platform designed to help students and professionals practice technical interviews through real-time AI-generated questions, mock interview simulations, and personalized feedback.
 
 The platform combines role-based interview preparation, AI mock interviews, and performance tracking — all within a single, seamless dashboard.
